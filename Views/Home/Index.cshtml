@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Kalkulator Kształtu";
+}
+
+<h2>Kalkulator Kształtu</h2>
+
+<form asp-action="Oblicz" method="post">
+    <div>
+        <label>Wybierz kształt:</label>
+        <select name="shapeType" id="shapeType" onchange="toggleInputs()">
+            <option value="Prostokąt">Prostokąt</option>
+            <option value="Koło">Koło</option>
+        </select>
+    </div>
+    <div id="rectangleInputs">
+        <label>Szerokość:</label>
+        <input type="number" name="width" step="any" />
+        <label>Wysokość:</label>
+        <input type="number" name="height" step="any" />
+    </div>
+    <div id="circleInputs" style="display:none;">
+        <label>Promień:</label>
+        <input type="number" name="radius" step="any" />
+    </div>
+    <button type="submit">Oblicz</button>
+</form>
+
+<script>
+    function toggleInputs() {
+        var shapeType = document.getElementById("shapeType").value;
+        if (shapeType === "Prostokąt") {
+            document.getElementById("rectangleInputs").style.display = "block";
+            document.getElementById("circleInputs").style.display = "none";
+        } else if (shapeType === "Koło") {
+            document.getElementById("rectangleInputs").style.display = "none";
+            document.getElementById("circleInputs").style.display = "block";
+        }
+    }
+</script>
+
+<style>
+    form {
+        margin-top: 20px;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+    }
+
+    input {
+        margin-bottom: 10px;
+    }
+
+    button {
+        margin-top: 10px;
+    }
+</style>
